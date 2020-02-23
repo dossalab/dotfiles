@@ -1,0 +1,76 @@
+# Basic
+super + d
+    dmenu_run
+super + u
+    udiskie-umount -a
+super + x
+    promt.sh "Shutdown?" "sudo poweroff"
+
+# Applications
+super + Return
+    $TERMINAL
+super + shift + Return
+    $TERMINAL -c dropdown_py
+super + p
+    $TERMINAL -c dropdown_py -e python
+super + a
+    $TERMINAL -c dropdown_pm -e pulsemixer
+super + s
+    arandr
+super + z
+    $TERMINAL -c dropdown_pm -e nmtui
+super + m
+    $TERMINAL -c dropdown_pm -e htop
+super + b
+    $TERMINAL -e launch-trrem.sh
+super + r
+    $TERMINAL -e $FILE
+super + w
+    firefox
+
+# Music (cmus, next song, prev song)
+super + c
+    launch-cmus.sh
+super + n
+    cmus-remote -n
+super + shift + n
+    cmus-remote -r
+XF86AudioPlay
+    cmus-remote -n
+
+# Screenshots
+Print
+    screenshot.sh -s
+shift + Print
+    screenshot.sh -a
+alt + Print
+    screenshot.sh -w
+
+# Gifs
+super + i
+    peek
+
+# System info
+super + F1
+    show-info.sh
+
+# Volume
+XF86AudioRaiseVolume
+    amixer -q set Master 5%+
+XF86AudioLowerVolume
+    amixer -q set Master 5%-
+XF86AudioMute
+    amixer -q set Master toggle
+
+# Brightness control
+XF86MonBrightnessUp
+    brillo -A 10 -u 200000
+XF86MonBrightnessDown
+    brillo -U 10 -u 200000
+
+# Mouse modification
+XF86LaunchA
+    middle-scroll.sh enable
+XF86Explorer
+    middle-scroll.sh disable
+
