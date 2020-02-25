@@ -1,22 +1,24 @@
 # i3 config file (v4)
 
 # Font
-font pango: Source Code Pro 7
+font pango: Source Code Pro 9
 
-# Disable title bar
-default_border pixel
+# Disable title bar & no borders
+default_border none
+for_window [class="^.*"] border none
 
 # Gaps and stuff
-for_window [class="^.*"] border pixel 1
-gaps inner 2
-gaps outer 2
+gaps inner 7
+gaps outer 0
 
 # Focus wrapping
 focus_wrapping no
 
 #
-# Dropdown windows
+# Enable floating for some applications
 #
+
+for_window [class="Kicad"] floating enable
 
 # For arandr - the xrandr GUI
 for_window [instance="arandr"] floating enable
