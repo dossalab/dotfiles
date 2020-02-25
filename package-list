@@ -54,6 +54,8 @@ lxdm-gtk3
 lzop
 m4
 maim
+slop
+xdotool
 make
 man-db
 neofetch
