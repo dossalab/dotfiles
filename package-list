@@ -45,8 +45,6 @@ libnotify
 libreoffice-fresh
 libtool
 libxslt
-lightdm
-lightdm-gtk-greeter
 linux
 linux-firmware
 lxappearance-gtk3
@@ -82,7 +80,6 @@ qemu
 ranger
 rsync
 sharutils
-slim
 stlink
 sudo
 sxhkd
