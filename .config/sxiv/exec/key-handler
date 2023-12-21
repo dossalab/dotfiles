@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/bin/sh
+
 while read file
 do
 	case "$1" in
@@ -13,6 +14,6 @@ do
 		echo -n "$file" | xclip -selection clipboard &&
 		notify-send "$file copied to clipboard" & ;;
 	"d")
-		[ "$(printf "No\\nYes" | dmenu -i -p "Really delete $file?")" = "Yes" ] && rm "$file" && notify-send "$file deleted." ;;
+		dmenu_promt "Really delete $file?" && rm "$file" && notify-send "$file deleted." ;;
 	esac
 done

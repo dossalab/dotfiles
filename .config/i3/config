@@ -1,172 +1,102 @@
-# i3 config file (v4)
+#
+# i3 config file
+#
 
-# Font
-font pango: Source Code Pro 9
+# Keycodes
+set $_q 24
+set $_w 25
+set $_e 26
+set $_r 27
+set $_t 28
+set $_y 29
+set $_u 30
+set $_p 33
+set $_a 38
+set $_s 39
+set $_d 40
+set $_f 41
+set $_g 42
+set $_h 43
+set $_j 44
+set $_k 45
+set $_l 46
+set $_; 47
+set $_z 52
+set $_x 53
+set $_c 54
+set $_v 55
+set $_b 56
+set $_n 57
+set $_m 58
 
-# Disable title bar & no borders
-default_border none
+# Disable window headers
 for_window [class="^.*"] border none
 
-# Gaps and stuff
-gaps inner 7
+# Common stuff
+font pango: Source Code Pro 9
+default_border none
+gaps inner 3
 gaps outer 0
-
-# Focus wrapping
 focus_wrapping no
+set $mod Mod4
 
-#
 # Enable floating for some applications
-#
-
 for_window [class="Kicad"] floating enable
-
-# For arandr - the xrandr GUI
 for_window [instance="arandr"] floating enable
-
-# For peek - the gif recorder
 for_window [instance="peek"] floating enable
 for_window [instance="peek"] resize set 400 200
-
 for_window [class="dropdown_*"] floating enable
 for_window [class="dropdown_*"] move scratchpad
 for_window [class="dropdown_*"] scratchpad show
-for_window [class="dropdown_wr"] resize set 1387 712
 for_window [class="dropdown_*"] move position center
-
-#
-# Keycodes
-#
-
-set $_q			24
-set $_w			25
-set $_e			26
-set $_r			27
-set $_t			28
-set $_y			29
-set $_u			30
-set $_p			33
-
-set $_a			38
-set $_s			39
-set $_d			40
-set $_f			41
-set $_g			42
-set $_h			43
-set $_j			44
-set $_k			45
-set $_l			46
-set $_;			47
-
-set $_z			52
-set $_x			53
-set $_c			54
-set $_v			55
-set $_b			56
-set $_n			57
-set $_m			58
-
-#
-# Color scheme
-#
-
-set_from_resource $darkblack	color0  #000000
-set_from_resource $black	color8  #000000
-set_from_resource $darkred	color1  #000000
-set_from_resource $red		color9  #000000
-set_from_resource $darkgreen	color2  #000000
-set_from_resource $green	color10 #000000
-set_from_resource $darkyellow	color3  #000000
-set_from_resource $yellow	color11 #000000
-set_from_resource $darkblue	color4  #000000
-set_from_resource $blue		color12 #000000
-set_from_resource $darkmagenta	color5  #000000
-set_from_resource $magenta	color13 #000000
-set_from_resource $darkcyan	color6  #000000
-set_from_resource $cyan		color14 #000000
-set_from_resource $darkwhite	color7  #000000
-set_from_resource $white	color15 #000000
-set $transparent			#00000000
-
-#			BORDER		BACKGROUND	TEXT		INDICATOR	CHILD_BORDER
-client.focused		$red		$red		$magenta	$darkmagenta	$darkblue
-client.unfocused	$transparent	$blue		$white		$darkblue	$transparent
-client.focused_inactive	$transparent	$blue		$white		$darkblue	$transparent
-client.urgent		$darkred	$darkred	$black		$darkred	$darkred
-client.background	$transparent
-
-
-# Some other variables
-	set $mod Mod4
-
+for_window [window_role="GtkFileChooserDialog"] resize set 1000 700
+for_window [window_role="GtkFileChooserDialog"] move position center
 
 # Basics
-	bindcode $mod+$_q		kill
-	bindsym  $mod+F2		restart
+bindcode $mod+$_q		kill
+bindsym  $mod+F2		restart
 
-# Moving around:
-	# Move your focus around
-	bindcode $mod+$_h		focus left
-	bindcode $mod+$_j		focus down
-	bindcode $mod+$_k		focus up
-	bindcode $mod+$_l		focus right
+# Moving around
+bindcode $mod+$_h		focus left
+bindcode $mod+$_j		focus down
+bindcode $mod+$_k		focus up
+bindcode $mod+$_l		focus right
 
-	# _move_ the focused window with the same, but add Shift
-	bindcode $mod+Shift+$_h	move left
-	bindcode $mod+Shift+$_j	move down
-	bindcode $mod+Shift+$_k	move up
-	bindcode $mod+Shift+$_l	move right
+# Move the focused window
+bindcode $mod+Shift+$_h		move left
+bindcode $mod+Shift+$_j		move down
+bindcode $mod+Shift+$_k		move up
+bindcode $mod+Shift+$_l		move right
 
 # Workspaces:
-	# names
-	set $ws1 "gen"
-	set $ws2 "web"
-	set $ws3 "discrete"
-	set $ws4 "calc"
-	set $ws5 "media"
+set $ws1 "a1"
+set $ws2 "a2"
+set $ws3 "a3"
+set $ws4 "a4"
+set $ws5 "a5"
 
-	# switch to workspace
-	bindsym $mod+1 workspace $ws1
-	bindsym $mod+2 workspace $ws2
-	bindsym $mod+3 workspace $ws3
-	bindsym $mod+4 workspace $ws4
-	bindsym $mod+5 workspace $ws5
+# switch to workspace
+bindsym $mod+1 workspace	$ws1
+bindsym $mod+2 workspace	$ws2
+bindsym $mod+3 workspace	$ws3
+bindsym $mod+4 workspace	$ws4
+bindsym $mod+5 workspace	$ws5
 
-	# Next / previous workspace
-	bindcode $mod+$_;		workspace next
-	bindcode $mod+$_g		workspace prev
+# Move focused window to workspace
+bindsym $mod+Shift+1		move container to workspace $ws1
+bindsym $mod+Shift+2		move container to workspace $ws2
+bindsym $mod+Shift+3		move container to workspace $ws3
+bindsym $mod+Shift+4		move container to workspace $ws4
+bindsym $mod+Shift+5		move container to workspace $ws5
 
-	# move focused container to workspace
-	bindsym $mod+Shift+1	move container to workspace $ws1
-	bindsym $mod+Shift+2	move container to workspace $ws2
-	bindsym $mod+Shift+3	move container to workspace $ws3
-	bindsym $mod+Shift+4	move container to workspace $ws4
-	bindsym $mod+Shift+5	move container to workspace $ws5
+# Resizing the windows
+bindcode $mod+Mod1+$_h		resize shrink width 10px
+bindcode $mod+Mod1+$_j		resize grow height 10px
+bindcode $mod+Mod1+$_k		resize shrink height 10px
+bindcode $mod+Mod1+$_l		resize grow width 10px
 
 # Layout stuff:
-	bindcode $mod+$_t		split toggle
-	bindcode $mod+$_f		fullscreen
-	bindsym  $mod+Shift+space	floating toggle
-	bindsym  $mod+space		focus mode_toggle
-
-	bindcode $mod+Mod1+$_h	resize shrink width 10px
-	bindcode $mod+Mod1+$_j	resize grow height 10px
-	bindcode $mod+Mod1+$_k	resize shrink height 10px
-	bindcode $mod+Mod1+$_l	resize grow width 10px
-
-# bar {
-# 	position		top
-# 	height			23
-# 	status_command		i3blocks
-# 	font pango:mono		9
-#
-# 	colors {
-# 		background #1c2023
-# 		statusline #dddddd
-#
-# 		focused_workspace  #1c2023 $magenta
-# 		active_workspace   #dddddd #333333
-# 		inactive_workspace #888888 #222222
-# 		urgent_workspace   #ffffff #900000
-# 	}
-# }
-#
+bindcode $mod+$_t		split toggle
+bindcode $mod+$_f		fullscreen
+bindsym  $mod+Shift+space	floating toggle
+bindsym  $mod+space		focus mode_toggle

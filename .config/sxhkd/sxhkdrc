@@ -4,73 +4,68 @@ super + d
 super + u
     udiskie-umount -a
 super + x
-    promt.sh "Shutdown?" "sudo poweroff"
+    dmenu_promt "Shutdown?" "poweroff"
 
 # Applications
 super + Return
     $TERMINAL
 super + shift + Return
-    $TERMINAL -c dropdown_py
+    $TERMINAL -c dropdown
 super + p
-    $TERMINAL -c dropdown_py -e python
+    $TERMINAL -c dropdown -e python
 super + a
-    $TERMINAL -c dropdown_pm -e pulsemixer
+    $TERMINAL -c dropdown -e pulsemixer
 super + s
     arandr
 super + z
-    $TERMINAL -c dropdown_pm -e nmtui
+    $TERMINAL -c dropdown -e nmtui
 super + m
-    $TERMINAL -c dropdown_pm -e htop
-super + b
-    $TERMINAL -e launch-trrem.sh
+    $TERMINAL -c dropdown -e htop
 super + r
     $TERMINAL -e $FILE
 super + w
-    firefox
-
-# Music (cmus, next song, prev song)
-super + c
-    launch-cmus.sh
+    $BROWSER
+super + y
+    $TERMINAL -e neomutt
 super + n
-    cmus-remote -n
-super + shift + n
-    cmus-remote -r
-XF86AudioPlay
-    cmus-remote -n
+    $TERMINAL -c dropdown -e newsboat
 
 # Screenshots
 Print
-    screenshot.sh -s
+    screenshot -s
 shift + Print
-    screenshot.sh -a
+    screenshot -a
 alt + Print
-    screenshot.sh -w
+    screenshot -w
 
 # Gifs
 super + i
     peek
 
+# Emoji
+super + e
+    emoji
+
 # System info
 super + F1
-    show-info.sh
+    systeminfo
+
+# Notifications
+ctrl + space
+    dunstctl close-all
 
 # Volume
 XF86AudioRaiseVolume
-    amixer -q set Master 5%+
+    pamixer -i 5
 XF86AudioLowerVolume
-    amixer -q set Master 5%-
+    pamixer -d 5
 XF86AudioMute
-    amixer -q set Master toggle
+    pamixer -t
+XF86AudioMicMute
+    pamixer --default-source -t
 
 # Brightness control
 XF86MonBrightnessUp
     brillo -A 10 -u 200000
 XF86MonBrightnessDown
     brillo -U 10 -u 200000
-
-# Mouse modification
-XF86LaunchA
-    middle-scroll.sh enable
-XF86Explorer
-    middle-scroll.sh disable
-

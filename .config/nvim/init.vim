@@ -19,6 +19,12 @@ Plug 'scrooloose/nerdtree'
 Plug 'junegunn/goyo.vim'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'tikhomirov/vim-glsl'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'lervag/vimtex'
+Plug 'liuchengxu/vim-clap'
+Plug 'zah/nim.vim'
+Plug 'vim-scripts/gtk-vim-syntax'
+Plug 'posva/vim-vue'
 call plug#end()
 
 " Appearance
@@ -37,8 +43,15 @@ syntax on
 set clipboard+=unnamedplus
 set fileencodings=utf8,cp1251,cp1252
 
+" dart indentation
+let g:dart_style_guide = 2
+let g:dart_format_on_save = 1
+
 " .h is C header!
 autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+
+" Update binds when sxhkdrc is updated.
+autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
 
 " Compile document, be it groff/LaTeX/markdown/etc.
 map <leader>c :w! \| !textcomp.sh <c-r>%<CR>
@@ -55,4 +68,3 @@ nnoremap r :A<CR>
 
 " Run make on space press
 noremap <Space><Space> :make!<cr>
-

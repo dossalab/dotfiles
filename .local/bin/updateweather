@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cache_location="$HOME/.cache/weather"
+
+weather=$(curl -s "https://wttr.in?format=3")
+[ $? -eq 0 ] && echo "$weather;$(date +"%H:%M")" > $cache_location

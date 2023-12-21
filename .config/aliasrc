@@ -1,38 +1,35 @@
 #!/bin/sh
 
+# Export pywal colors globally
+. "${HOME}/.cache/wal/colors.sh"
+
 # Verbosity and settings that you pretty much just always are going to want.
 alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	rm="rm -v" \
-	mkd="mkdir -pv" \
+	dd="dd status=progress"
 
 # Colorize commands when possible.
 alias \
 	ls="ls -hN --color=auto --group-directories-first" \
 	grep="grep --color=auto" \
-	diff="diff --color=auto" \
-	ccat="highlight --out-format=ansi"
+	diff="diff --color=auto"
 
 # These common commands are just too long! Abbreviate them.
 alias \
+	sudo="doas" \
 	ka="killall" \
-	g="git" \
 	r="$FILE" \
 	f="fzf" \
 	e="$EDITOR" \
 	v="$EDITOR" \
-	sv="sudo $EDITOR" \
-	p="sudo pacman" \
-	SS="sudo systemctl" \
-	blctl="bluetoothctl" \
-	mon="tmuxinator" \
-	tdev="tmuxinator start dev" \
+	sv="doas $EDITOR" \
+	p="doas pacman" \
+	SS="doas systemctl" \
+	blctl="bluetoothctl"
 
 # Just stuff
 alias \
-	amake="find -iregex '.*\.\(tex\|ms\|c\|h\)' | entr make"
-	armp="openocd && amake"
 	vc="v ~/.config/nvim/init.vim"
 	ic="v ~/.config/i3/config"
-
