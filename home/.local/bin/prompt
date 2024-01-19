@@ -7,7 +7,7 @@ case $(printf "yes\nno" | $MENU -i -l 2 -p $1) in
         exit 0 ;;
 esac
 
-# It's probably possible to interrupt this script before we reach this line... So it may return sucess,
+# It's probably possible to interrupt this script before we reach this line... So it may return success,
 # even if the user has not agreed to it explicitly...
 
 exit 1
