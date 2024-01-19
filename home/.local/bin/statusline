@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# Simple modular status bar
+
+add () {
+    statusline="$statusline$1  "
+}
+
+plug_time () {
+    add "🕛 $(date +"%H:%M")"
+}
+
+plug_date () {
+    add "📅 $(date +"%d %b, %a")"
+}
+
+plug_batteries () {
+    for node in /sys/class/power_supply/BAT*; do
+        case $(cat $node/status) in
+        "Charging")
+            icon=🔺 ;;
+        "Discharging")
+            icon=🔻 ;;
+        esac
+
+        add "🔋 $(cat $node/capacity)%$icon"
+    done
+}
+
+plug_connections () {
+    for connection in $(nmcli -t -f name connection show --active); do
+        add "🔗 $connection"
+    done
+}
+
+plug_bluetooth () {
+    [ -z "$(bluetoothctl list)" ] && return
+
+    for device in $(bluetoothctl devices Connected | cut -d " " -f3); do
+        add "🔵 $device"
+    done
+}
+
+# You can rearrange plugins in any order
+plug_time
+plug_date
+plug_batteries
+plug_connections
+plug_bluetooth
+
+echo "$statusline"

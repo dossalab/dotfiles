@@ -1,0 +1,7 @@
+# Laptop-specific part of the configuration
+
+# Screen brightness control
+bindsym --locked {
+  XF86MonBrightnessUp exec brillo -A 20 -u 100000
+  XF86MonBrightnessDown exec brillo -U 20 -u 100000
+}

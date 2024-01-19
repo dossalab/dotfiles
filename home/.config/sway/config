@@ -1,0 +1,120 @@
+include ${XDG_CACHE_HOME}wal/colors-sway
+
+output * bg $wallpaper fill
+
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+
+default_border none
+default_floating_border none
+focus_wrapping no
+for_window [app_id="floating"] floating enable, resize set 800px 500px, move position center
+# for_window [window_role="GtkFileChooserDialog"] resize set 800px 500px, move position center
+
+input type:keyboard {
+    xkb_layout "pl,ru"
+    xkb_options "grp:alt_shift_toggle"
+    repeat_delay 250
+    repeat_rate 50
+}
+
+input type:touchpad {
+    tap enabled
+}
+
+# Apps
+bindsym --to-code {
+  $mod+d exec ${MENU}-run | xargs swaymsg exec --
+  $mod+Return exec $TERMINAL
+  $mod+w exec $BROWSER
+  $mod+r exec $TERMINAL -e $FILE
+  $mod+a exec $TERMINAL --class floating -e pulsemixer
+  $mod+p exec $TERMINAL --class floating -e python
+  $mod+z exec $TERMINAL --class floating -e nmtui
+  $mod+u exec udiskie-umount -a
+}
+
+# System keys
+bindsym --locked {
+  XF86AudioRaiseVolume exec pamixer -i 5
+  XF86AudioLowerVolume exec pamixer -d 5
+  XF86AudioMute        exec pamixer -t
+  XF86AudioMicMute     exec pamixer --default-source -t
+  Print                exec screenshot screen
+  Shift+Print          exec screenshot area
+}
+
+# Windows
+bindsym --to-code {
+  $mod+$left  focus left
+  $mod+$down  focus down
+  $mod+$up    focus up
+  $mod+$right focus right
+
+  $mod+Shift+$left  move left
+  $mod+Shift+$down  move down
+  $mod+Shift+$up    move up
+  $mod+Shift+$right move right
+
+  $mod+Mod1+$left   resize shrink width 10px
+  $mod+Mod1+$down   resize grow height 10px
+  $mod+Mod1+$up     resize shrink height 10px
+  $mod+Mod1+$right  resize grow width 10px
+}
+
+# Window actions
+bindsym --to-code {
+  $mod+f            fullscreen
+  $mod+q            kill
+  $mod+Shift+space  floating toggle
+  $mod+space focus  mode_toggle
+}
+
+# Workspaces
+bindsym --to-code {
+  $mod+1 workspace number 1
+  $mod+2 workspace number 2
+  $mod+3 workspace number 3
+  $mod+4 workspace number 4
+  $mod+5 workspace number 5
+
+  $mod+Shift+1 move container to workspace number 1
+  $mod+Shift+2 move container to workspace number 2
+  $mod+Shift+3 move container to workspace number 3
+  $mod+Shift+4 move container to workspace number 4
+  $mod+Shift+5 move container to workspace number 5
+
+  # Control whether to add new windows horizontally or vertically
+  $mod+t split toggle
+}
+
+bar {
+    position top
+
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+
+    colors {
+        statusline #ff0000
+        background $color1
+        focused_workspace $color6 $color6 $color1
+        inactive_workspace $color1 $color1 $color6
+    }
+}
+
+# Load flash drive automounter
+exec udiskie -t
+
+# Refresh this configuration
+bindsym --to-code {
+  $mod+Shift+c reload
+}
+
+# Include this for the laptop-specific configuration (i.e screen brightness control)
+include config.laptop
+
+# Mandatory include
+include /etc/sway/config.d/*

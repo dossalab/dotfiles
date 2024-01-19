@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# Small scriptable screenshot tool for X11 and Wayland
+
+die () {
+    echo $1 && exit 1
+}
+
+case $XDG_SESSION_TYPE in
+"wayland")
+    screenshot_screen () {
+        grim -c - | wl-copy
+    }
+
+    screenshot_area () {
+        slurp | grim -c -g - - | wl-copy
+    }
+
+    DEPS="wl-copy slurp grim"
+    ;;
+
+"x11")
+    screenshot_screen () {
+        maim -B | xclip -selection clipboard -t image/png
+    }
+
+    screenshot_area () {
+        maim -Bg $(slop) | xclip -selection clipboard -t image/png
+    }
+
+    DEPS="xclip slop maim"
+    ;;
+
+*)
+    die "unknown or unset XDG_SESSION_TYPE (what are you running on?)"
+    ;;
+esac
+
+! command -v $DEPS > /dev/null && die "can't run - make sure dependancies '$DEPS' are installed and available in PATH"
+
+case $1 in
+area)
+    screenshot_area
+    ;;
+
+screen)
+    screenshot_screen
+    ;;
+
+"")
+    screenshot_screen
+    ;;
+
+*)
+    die "$0 [area | screen (default)]"
+    ;;
+esac

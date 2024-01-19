@@ -1,0 +1,11 @@
+[binds]
+p = prev
+n = next
+<equal> = reset
+r = rotate by 90
+<Shift+R> = rotate by -90
+
+[options]
+overlay = true
+overlay_position_bottom = true
+overlay_font = Monospace:12

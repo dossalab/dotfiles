@@ -1,0 +1,5 @@
+#!/bin/sh
+
+[ -z "$1" ] && echo "you need to provide a wallpaper" && exit 1
+
+cp "$1" ~/.config/wall && wal -i "$1"

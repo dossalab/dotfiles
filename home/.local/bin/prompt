@@ -1,0 +1,13 @@
+#!/bin/sh
+
+[ -z "$1" ] && echo "usage: $0 <prompt>. Return code is true or false depending on the user input" && exit 1
+
+case $(printf "yes\nno" | $MENU -i -l 2 -p $1) in
+    yes)
+        exit 0 ;;
+esac
+
+# It's probably possible to interrupt this script before we reach this line... So it may return sucess,
+# even if the user has not agreed to it explicitly...
+
+exit 1

@@ -1,0 +1,13 @@
+android-tools
+arm-none-eabi-gcc
+arm-none-eabi-gdb
+arm-none-eabi-newlib
+base-devel
+direnv
+gdb
+git
+go
+intellij-idea-community-edition
+meson
+openocd
+swig

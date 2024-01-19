@@ -1,5 +1,0 @@
-#!/bin/sh
-
-[ ! -z "$1" ] && cp "$1" ~/.config/wall && wal -i "$1"
-
-xwallpaper --zoom ~/.config/wall

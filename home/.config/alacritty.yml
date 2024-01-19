@@ -1,0 +1,5 @@
+key_bindings:
+  - { key: V, mods: Alt, action: Paste }
+  - { key: C, mods: Alt, action: Copy }
+  - { key: J, mods: Alt, action: ScrollLineDown }
+  - { key: K, mods: Alt, action: ScrollLineUp }
