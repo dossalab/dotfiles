@@ -41,11 +41,28 @@ plug_bluetooth () {
     done
 }
 
-# You can rearrange plugins in any order
-plug_time
-plug_date
-plug_batteries
-plug_connections
-plug_bluetooth
+plug_disks () {
+    for point in / /home; do
+        usage=$(findmnt "$point" -no "TARGET,USE%" | sed "s/  */ → /g")
+        [ ! -z "$usage" ] && add "💾 $usage"
+    done
+}
 
-echo "$statusline"
+for arg in $@; do
+    case $arg in
+    time)
+        plug_time ;;
+    date)
+        plug_date ;;
+    batteries)
+        plug_batteries ;;
+    connections)
+        plug_connections ;;
+    bluetooth)
+        plug_bluetooth ;;
+    disks)
+        plug_disks ;;
+    esac
+done
+
+[ ! -z "$statusline" ] && echo "$statusline"

@@ -1,0 +1,25 @@
+separator=false
+
+[time]
+command=statusline time
+interval=5
+
+[date]
+command=statusline date
+interval=60
+
+[batteries]
+command=statusline batteries
+interval=5
+
+[disks]
+command=statusline disks
+interval=60
+
+[connections]
+command=statusline connections
+interval=10
+
+[bluetooth]
+command=statusline bluetooth
+interval=5
