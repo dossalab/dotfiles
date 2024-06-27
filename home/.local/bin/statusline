@@ -15,7 +15,7 @@ plug_date () {
 }
 
 plug_batteries () {
-    for node in /sys/class/power_supply/BAT*; do
+    for node in $(find /sys/class/power_supply/ -maxdepth 1 -iname "bat*"); do
         case $(cat $node/status) in
         "Charging")
             icon=🔺 ;;
