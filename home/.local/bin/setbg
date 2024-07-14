@@ -1,5 +1,7 @@
 #!/bin/sh
 
+WALLPAPER_PATH=~/.config/wall
+
 [ -z "$1" ] && echo "you need to provide a wallpaper" && exit 1
 
-cp "$1" ~/.config/wall && wal -i "$1"
+cp "$1" "$WALLPAPER_PATH" && wal -i "$WALLPAPER_PATH"
