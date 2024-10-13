@@ -16,7 +16,7 @@ The core of this setup is a simple desktop environment called Sway. Majority of 
 
 ## Installing the dotfiles:
 
-0. Download this repo from the GitHub, or using the shortcut at [my website](https://cringe.page/dotfiles)
+0. Download this repo from the GitHub
 1. Use `pacman -S - < <packagelist>` to install the packagelist. Required packages are in `packagelist.base`. You can also install `packagelist.intel` if you have an Intel-based system. Optionally, install `packagelist.dev` for development packages.
 2. Copy contents of `home` directory to your user's home (`~/`). Please note that 'installing' it like that will overwrite any existing configuration (if any). If unsure, create a separate temporary user and try my dotfiles there before doing a permanent install. There is no way to roll back.
 3. Execute `chsh <username>`. Select `/usr/bin/zsh` as your new shell.
